@@ -1,5 +1,6 @@
 package com.example.hussan.firebasemlkit
 
+import com.example.hussan.firebasemlkit.extensions.toast
 import com.google.firebase.ml.vision.FirebaseVision
 import com.google.firebase.ml.vision.common.FirebaseVisionImage
 import com.google.firebase.ml.vision.text.FirebaseVisionText
@@ -15,7 +16,7 @@ class TextRecognitionActivity : BaseActivity() {
 
     fun runTextRecognition() {
 
-        selectedImahge?.let{
+        selectedImage?.let{
             val image: FirebaseVisionImage = FirebaseVisionImage.fromBitmap(it)
             val detector = FirebaseVision.getInstance()
                 .visionTextDetector
@@ -32,7 +33,7 @@ class TextRecognitionActivity : BaseActivity() {
     private fun processText(texts: FirebaseVisionText) {
         val blocks = texts.blocks
         if (blocks.size == 0) {
-            showToast("No text found")
+            toast("No text found")
             return
         }
         var resultText = ""
@@ -45,7 +46,7 @@ class TextRecognitionActivity : BaseActivity() {
                 }
             }
         }
-        showToast(resultText)
+        toast(resultText)
         txtResult.text = resultText
     }
 

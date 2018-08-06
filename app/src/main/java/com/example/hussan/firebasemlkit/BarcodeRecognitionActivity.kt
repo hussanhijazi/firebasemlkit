@@ -17,7 +17,7 @@ class BarcodeRecognitionActivity : BaseActivity() {
     }
     fun runBarcodeRecognition() {
 
-        selectedImahge?.let{
+        selectedImage?.let{
             val image: FirebaseVisionImage = FirebaseVisionImage.fromBitmap(it)
             val detector = FirebaseVision.getInstance()
                 .visionBarcodeDetector

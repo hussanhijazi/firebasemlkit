@@ -3,9 +3,7 @@ package com.example.hussan.firebasemlkit
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.example.hussan.firebasemlkit.extensions.navigate
-import kotlinx.android.synthetic.main.activity_main.btnBarcode
-import kotlinx.android.synthetic.main.activity_main.btnLabel
-import kotlinx.android.synthetic.main.activity_main.btnText
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -24,6 +22,9 @@ class MainActivity : AppCompatActivity() {
             navigate<BarcodeRecognitionActivity>()
         }
 
+        btnLandmark.setOnClickListener {
+            navigate<LandmarkRecognitionActivity>()
+        }
     }
 
 }

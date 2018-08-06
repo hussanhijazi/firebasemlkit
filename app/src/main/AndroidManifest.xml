@@ -23,6 +23,7 @@
         <activity android:name=".LabelRecognitionActivity"/>
         <activity android:name=".TextRecognitionActivity"/>
         <activity android:name=".BarcodeRecognitionActivity"/>
+        <activity android:name=".LandmarkRecognitionActivity"/>
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="${applicationId}.file_provider"
@@ -34,7 +35,7 @@
         </provider>
         <meta-data
             android:name="com.google.firebase.ml.vision.DEPENDENCIES"
-            android:value="label, barcode" />
+            android:value="text, label, barcode" />
     </application>
 
 </manifest>

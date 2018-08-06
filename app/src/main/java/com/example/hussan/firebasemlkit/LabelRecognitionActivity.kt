@@ -17,7 +17,7 @@ class LabelRecognitionActivity : BaseActivity() {
     }
 
     private fun runLabelRecognition() {
-        val image = FirebaseVisionImage.fromBitmap(selectedImahge ?: return)
+        val image = FirebaseVisionImage.fromBitmap(selectedImage ?: return)
         val detector = FirebaseVision.getInstance()
             .visionLabelDetector
         detector.detectInImage(image)

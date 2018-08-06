@@ -1,7 +1,6 @@
 package com.example.hussan.firebasemlkit
 
 import android.app.Activity
-import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Bundle
@@ -9,8 +8,8 @@ import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.Toast
 import com.bumptech.glide.Glide
+import com.example.hussan.firebasemlkit.extensions.getBitmapFromAsset
 import com.miguelbcr.ui.rx_paparazzo2.RxPaparazzo
 import com.miguelbcr.ui.rx_paparazzo2.entities.FileData
 import com.miguelbcr.ui.rx_paparazzo2.entities.size.CustomMaxSize
@@ -20,12 +19,10 @@ import kotlinx.android.synthetic.main.activity_recognition.btnFind
 import kotlinx.android.synthetic.main.activity_recognition.btnTakePhoto
 import kotlinx.android.synthetic.main.activity_recognition.imageView
 import kotlinx.android.synthetic.main.activity_recognition.spiImage
-import java.io.IOException
-import java.io.InputStream
 
 open class BaseActivity: AppCompatActivity() {
 
-    var selectedImahge: Bitmap? = null
+    var selectedImage: Bitmap? = null
     var items = emptyArray<String>()
     lateinit var recognitionCallback: () -> Any
 
@@ -43,8 +40,8 @@ open class BaseActivity: AppCompatActivity() {
             override fun onNothingSelected(p0: AdapterView<*>?) {}
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
 
-                selectedImahge = getBitmapFromAsset(this@BaseActivity, items[position])
-                Glide.with(this@BaseActivity).load(selectedImahge).into(imageView)
+                selectedImage = this@BaseActivity.getBitmapFromAsset(items[position])
+                Glide.with(this@BaseActivity).load(selectedImage).into(imageView)
                 recognitionCallback()
             }
 
@@ -74,31 +71,12 @@ open class BaseActivity: AppCompatActivity() {
     }
     private fun loadImage(fileData: FileData) {
         fileData.file?.let {
-            if (it != null && it.exists()) {
-                selectedImahge = BitmapFactory.decodeFile(it.path)
+            if (it.exists()) {
+                selectedImage = BitmapFactory.decodeFile(it.path)
                 Glide.with(this).load(it).into(imageView)
                 recognitionCallback()
             }
         }
-    }
-
-    fun showToast(message: String) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
-    }
-
-    fun getBitmapFromAsset(context: Context, filePath: String): Bitmap? {
-        val assetManager = context.assets
-
-        val `is`: InputStream
-        var bitmap: Bitmap? = null
-        try {
-            `is` = assetManager.open(filePath)
-            bitmap = BitmapFactory.decodeStream(`is`)
-        } catch (e: IOException) {
-            e.printStackTrace()
-        }
-
-        return bitmap
     }
 
 }
