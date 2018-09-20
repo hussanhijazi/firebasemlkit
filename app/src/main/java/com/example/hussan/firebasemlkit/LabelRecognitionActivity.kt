@@ -11,7 +11,8 @@ class LabelRecognitionActivity : BaseActivity() {
     companion object {
         var TAG = this.javaClass.canonicalName
     }
-    init{
+
+    init {
         items = arrayOf("mug.jpg", "mouse.jpg", "ball.jpg")
         recognitionCallback = this::runLabelRecognition
     }
@@ -19,22 +20,22 @@ class LabelRecognitionActivity : BaseActivity() {
     private fun runLabelRecognition() {
         val image = FirebaseVisionImage.fromBitmap(selectedImage ?: return)
         val detector = FirebaseVision.getInstance()
-            .visionLabelDetector
+                .visionLabelDetector
         detector.detectInImage(image)
-            .addOnSuccessListener {
-                var resultText = ""
-                for (label in it) {
-                    val text = label.label
-                    val entityId = label.entityId
-                    val confidence = label.confidence
-                     resultText += " $text - $confidence\n"
+                .addOnSuccessListener {
+                    var resultText = ""
+                    for (label in it) {
+                        val text = label.label
+                        val entityId = label.entityId
+                        val confidence = label.confidence
+                        resultText += " $text - $confidence\n"
+                    }
+                    txtResult.text = resultText
                 }
-                txtResult.text = resultText
-            }
-            .addOnFailureListener {
-                it.printStackTrace()
-                Log.d(TAG, it.message)
-            }
+                .addOnFailureListener {
+                    it.printStackTrace()
+                    Log.d(TAG, it.message)
+                }
 
     }
 

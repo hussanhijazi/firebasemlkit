@@ -12,8 +12,8 @@ import java.io.IOException
 import java.io.InputStream
 
 inline fun <reified T : Activity> Activity.navigate(
-    bundle: Bundle? = null,
-    options: ActivityOptionsCompat? = null
+        bundle: Bundle? = null,
+        options: ActivityOptionsCompat? = null
 ) {
     val intent = Intent(this, T::class.java)
     intent.apply {
@@ -39,7 +39,7 @@ fun Context.getBitmapFromAsset(filePath: String): Bitmap? {
     return bitmap
 }
 
-fun Context.toast(message: String){
+fun Context.toast(message: String) {
     Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
 
 }
