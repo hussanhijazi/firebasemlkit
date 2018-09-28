@@ -1,11 +1,11 @@
-package com.example.hussan.firebasemlkit
+package com.example.hussan.firebasemlkit.ui
 
 import com.example.hussan.firebasemlkit.extensions.toast
 import com.google.firebase.ml.vision.FirebaseVision
 import com.google.firebase.ml.vision.common.FirebaseVisionImage
 import kotlinx.android.synthetic.main.activity_recognition.txtResult
 
-class LandmarkRecognitionActivity : BaseActivity() {
+class LandmarkRecognitionRecognitionActivity : BaseRecognitionActivity() {
 
     companion object {
         var TAG = this.javaClass.canonicalName

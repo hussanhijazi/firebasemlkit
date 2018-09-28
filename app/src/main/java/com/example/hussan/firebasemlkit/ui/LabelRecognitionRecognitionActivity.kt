@@ -1,4 +1,4 @@
-package com.example.hussan.firebasemlkit
+package com.example.hussan.firebasemlkit.ui
 
 import android.util.Log
 import com.google.firebase.ml.vision.FirebaseVision
@@ -6,7 +6,7 @@ import com.google.firebase.ml.vision.common.FirebaseVisionImage
 import kotlinx.android.synthetic.main.activity_recognition.txtResult
 
 
-class LabelRecognitionActivity : BaseActivity() {
+class LabelRecognitionRecognitionActivity : BaseRecognitionActivity() {
 
     companion object {
         var TAG = this.javaClass.canonicalName

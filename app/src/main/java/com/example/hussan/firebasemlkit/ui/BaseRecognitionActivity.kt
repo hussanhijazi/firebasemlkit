@@ -1,4 +1,4 @@
-package com.example.hussan.firebasemlkit
+package com.example.hussan.firebasemlkit.ui
 
 import android.app.Activity
 import android.graphics.Bitmap
@@ -10,6 +10,7 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import com.bumptech.glide.Glide
+import com.example.hussan.firebasemlkit.R
 import com.example.hussan.firebasemlkit.extensions.getBitmapFromAsset
 import com.miguelbcr.ui.rx_paparazzo2.RxPaparazzo
 import com.miguelbcr.ui.rx_paparazzo2.entities.FileData
@@ -21,7 +22,7 @@ import kotlinx.android.synthetic.main.activity_recognition.btnTakePhoto
 import kotlinx.android.synthetic.main.activity_recognition.imageView
 import kotlinx.android.synthetic.main.activity_recognition.spiImage
 
-open class BaseActivity : AppCompatActivity() {
+open class BaseRecognitionActivity : AppCompatActivity() {
 
     var selectedImage: Bitmap? = null
     var items = emptyArray<String>()
@@ -43,10 +44,10 @@ open class BaseActivity : AppCompatActivity() {
             override fun onNothingSelected(p0: AdapterView<*>?) {}
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
 
-                selectedImage = this@BaseActivity.getBitmapFromAsset(items[position])
+                selectedImage = this@BaseRecognitionActivity.getBitmapFromAsset(items[position])
 
                 selectedImage?.let {
-                    Glide.with(this@BaseActivity).load(selectedImage).into(imageView)
+                    Glide.with(this@BaseRecognitionActivity).load(selectedImage).into(imageView)
                     selectedImage = resizeBitmap(it)
                 }
             }
@@ -92,7 +93,7 @@ open class BaseActivity : AppCompatActivity() {
 
     private fun getImageMaxWidth(): Int? {
         if (mImageMaxWidth == null) {
-            mImageMaxWidth = imageView.getWidth()
+            mImageMaxWidth = imageView.width
         }
 
         return mImageMaxWidth
@@ -100,7 +101,7 @@ open class BaseActivity : AppCompatActivity() {
 
     private fun getImageMaxHeight(): Int? {
         if (mImageMaxHeight == null) {
-            mImageMaxHeight = imageView.getHeight()
+            mImageMaxHeight = imageView.height
         }
 
         return mImageMaxHeight

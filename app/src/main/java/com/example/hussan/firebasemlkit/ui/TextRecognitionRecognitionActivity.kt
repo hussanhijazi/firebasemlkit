@@ -1,4 +1,4 @@
-package com.example.hussan.firebasemlkit
+package com.example.hussan.firebasemlkit.ui
 
 import android.view.View
 import com.example.hussan.firebasemlkit.extensions.toast
@@ -10,11 +10,11 @@ import kotlinx.android.synthetic.main.activity_recognition.graphicOverlay
 import kotlinx.android.synthetic.main.activity_recognition.progressBar
 import kotlinx.android.synthetic.main.activity_recognition.txtResult
 
-
-class TextRecognitionActivity : BaseActivity() {
+class TextRecognitionRecognitionActivity : BaseRecognitionActivity() {
 
     init {
-        items = arrayOf("pucpr.jpg", "utfpr.jpg", "ufpr.jpg", "unioeste.jpg", "unioeste_fies.jpg", "pucpr_bolsas.jpg")
+        items = arrayOf("pucpr.jpg", "utfpr.jpg", "ufpr.jpg",
+                "unioeste.jpg", "unioeste_fies.jpg", "pucpr_bolsas.jpg", "fumec.jpg")
         recognitionCallback = this::runTextRecognition
     }
 

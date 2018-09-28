@@ -1,4 +1,4 @@
-package com.example.hussan.firebasemlkit
+package com.example.hussan.firebasemlkit.ui
 
 import android.util.Log
 import com.google.firebase.ml.vision.FirebaseVision
@@ -6,7 +6,7 @@ import com.google.firebase.ml.vision.common.FirebaseVisionImage
 import kotlinx.android.synthetic.main.activity_recognition.txtResult
 
 
-class BarcodeRecognitionActivity : BaseActivity() {
+class BarcodeRecognitionRecognitionActivity : BaseRecognitionActivity() {
 
     init {
         items = arrayOf("barcode.png", "barcode2.jpg", "barcode3.jpg", "qrcode.png")
