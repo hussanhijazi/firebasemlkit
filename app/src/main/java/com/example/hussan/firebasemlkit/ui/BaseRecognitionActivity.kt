@@ -14,6 +14,7 @@ import com.example.hussan.firebasemlkit.R
 import com.example.hussan.firebasemlkit.extensions.getBitmapFromAsset
 import com.miguelbcr.ui.rx_paparazzo2.RxPaparazzo
 import com.miguelbcr.ui.rx_paparazzo2.entities.FileData
+import com.miguelbcr.ui.rx_paparazzo2.entities.size.CustomMaxSize
 import com.miguelbcr.ui.rx_paparazzo2.entities.size.OriginalSize
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -109,7 +110,7 @@ open class BaseRecognitionActivity : AppCompatActivity() {
 
     fun takePhoto() {
         RxPaparazzo.single(this)
-                .size(OriginalSize())
+                .size(CustomMaxSize(1024))
                 .usingCamera()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

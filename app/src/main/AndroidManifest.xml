@@ -25,6 +25,7 @@
         <activity android:name=".ui.BarcodeRecognitionRecognitionActivity" />
         <activity android:name=".ui.LandmarkRecognitionRecognitionActivity" />
         <activity android:name=".ui.EffectsActivity" />
+        <activity android:name=".ui.ShowTextsActivity" />
 
         <provider
             android:name="android.support.v4.content.FileProvider"
