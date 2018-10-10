@@ -21,7 +21,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.LabelRecognitionRecognitionActivity" />
-        <activity android:name=".ui.TextRecognitionRecognitionActivity" />
+        <activity android:name=".ui.TextRecognitionActivity" />
         <activity android:name=".ui.BarcodeRecognitionRecognitionActivity" />
         <activity android:name=".ui.LandmarkRecognitionRecognitionActivity" />
         <activity android:name=".ui.EffectsActivity" />

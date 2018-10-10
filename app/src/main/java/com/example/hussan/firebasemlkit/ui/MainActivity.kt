@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
             navigate<LabelRecognitionRecognitionActivity>()
         }
         btnText.setOnClickListener {
-            navigate<TextRecognitionRecognitionActivity>()
+            navigate<TextRecognitionActivity>()
         }
 
         btnBarcode.setOnClickListener {

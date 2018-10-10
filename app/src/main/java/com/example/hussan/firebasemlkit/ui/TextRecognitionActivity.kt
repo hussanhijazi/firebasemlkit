@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.activity_recognition.graphicOverlay
 import kotlinx.android.synthetic.main.activity_recognition.progressBar
 import kotlinx.android.synthetic.main.activity_recognition.txtResult
 
-class TextRecognitionRecognitionActivity : BaseRecognitionActivity() {
+class TextRecognitionActivity : BaseRecognitionActivity() {
 
     init {
         items = arrayOf("pucpr.jpg", "utfpr.jpg", "ufpr.jpg",
@@ -58,6 +58,7 @@ class TextRecognitionRecognitionActivity : BaseRecognitionActivity() {
                 }
                 resultText += "\n"
             }
+            resultText += "\n"
         }
         Log.d("h2", resultText)
         val intent = Intent(this, ShowTextsActivity::class.java)
