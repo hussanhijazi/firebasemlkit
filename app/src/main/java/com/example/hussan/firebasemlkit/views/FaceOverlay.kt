@@ -14,7 +14,6 @@ import com.google.firebase.ml.vision.face.FirebaseVisionFace
 import com.google.firebase.ml.vision.face.FirebaseVisionFaceLandmark
 import com.yalantis.ucrop.util.BitmapLoadUtils.transformBitmap
 
-
 class FaceOverlay(context: Context?, attrs: AttributeSet?) : View(context, attrs) {
 
     var face: FirebaseVisionFace? = null
@@ -32,6 +31,7 @@ class FaceOverlay(context: Context?, attrs: AttributeSet?) : View(context, attrs
     private val glassesBitmap: Bitmap = BitmapFactory.decodeResource(resources, R.drawable.glasses)
     private val eyeBitmap: Bitmap = BitmapFactory.decodeResource(resources, R.drawable.eye)
     private val hairBitmap: Bitmap = BitmapFactory.decodeResource(resources, R.drawable.hair)
+    private val cheekBitmap: Bitmap = BitmapFactory.decodeResource(resources, R.drawable.star)
 
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
@@ -46,7 +46,35 @@ class FaceOverlay(context: Context?, attrs: AttributeSet?) : View(context, attrs
             drawGlasses(canvas, face)
             drawHair(canvas, face)
 //            drawEye(canvas, face)
+//            drawStarCheek(canvas, face)
         }
+    }
+
+    private fun drawStarCheek(canvas: Canvas, face: FirebaseVisionFace) {
+        val leftCheek = face.getLandmark(FirebaseVisionFaceLandmark.LEFT_CHEEK)
+        val rightCheek = face.getLandmark(FirebaseVisionFaceLandmark.RIGHT_CHEEK)
+
+        if (leftCheek != null) {
+            val rotateCheek = rotateBitmap(face, cheekBitmap)
+            val leftEyeDraw = Rect(
+                    translateX(leftCheek.position.x).toInt() - 50,
+                    translateY(leftCheek.position.y).toInt() - 50,
+                    translateX(leftCheek.position.x).toInt() + 50,
+                    translateY(leftCheek.position.y).toInt() + 50)
+            canvas.drawBitmap(rotateCheek, null, leftEyeDraw, null)
+        }
+
+        if (rightCheek != null) {
+            val rotateCheek = rotateBitmap(face, cheekBitmap)
+
+            val leftEyeDraw = Rect(
+                    translateX(rightCheek.position.x).toInt() - 50,
+                    translateY(rightCheek.position.y).toInt() - 50,
+                    translateX(rightCheek.position.x).toInt() + 50,
+                    translateY(rightCheek.position.y).toInt() + 50)
+            canvas.drawBitmap(rotateCheek, null, leftEyeDraw, null)
+        }
+
     }
 
     private fun drawHair(canvas: Canvas, face: FirebaseVisionFace) {
@@ -78,10 +106,6 @@ class FaceOverlay(context: Context?, attrs: AttributeSet?) : View(context, attrs
                     translateY(rightEye.position.y).toInt())
             canvas.drawBitmap(rotatedEye, null, rightEyeDraw, null)
 
-//            val paint = Paint()
-//            paint.setColor(Color.RED)
-//            canvas.drawCircle(translateX(leftEye.position.x), translateY(leftEye.position.y), delta.toFloat() / 2, paint)
-//            canvas.drawCircle(translateX(rightEye.position.x), translateY(rightEye.position.y), delta.toFloat() / 2, paint)
             drawBox(canvas)
         }
     }
